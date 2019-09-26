@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--mapper的接口绑定
+        1.namespace:与mapper接口的全限定类名一致
+        2.mybatis.xml中<mappers>里使用<packabg>标签-->
+<mapper namespace="com.jhly.myBatisDemo.mapper.StudentMapper">
+    <select id="selectAll" resultType="student">
+    select * from student
+    </select>
+    <!--    多参数时不需要parameterType-->
+    <select id="selectBySidAndSname" resultType="student">
+select * from student where sid = #{param1} or sname = #{param2}
+    </select>
+    <!--    使用注解传参，#{}内写注解配的参数名-->
+    <select id="selectBySidAndAge" resultType="student">
+        <!--select * from student where sid = #{sid} or age = #{age} -->
+        select * from student
+        <where>
+            <!--OGNL表达式，直接写key或对象的属性,不需要添加任何特殊符号-->
+            <if test="sid != null and sid != ''">
+                and sid = #{sid}
+            </if>
+            <if test="age != null and age != ''">
+                or age = #{age}
+            </if>
+        </where>
+    </select>
+    <resultMap id="myMap" type="student">
+<!--        主键使用id标签配置映射关系-->
+        <id column="sid" property="sid"></id>
+<!--        其他属性使用result-->
+        <result column="age" property="age"/>
+        <result column="sname" property="sname"/>
+        <result column="tid" property="tid"/>
+<!--        关联一个对象-->
+        <association property="teacher" select="com.jhly.myBatisDemo.mapper.TeacherMapper.selectById" column="tid"/>
+    </resultMap>
+<!--    <select id="selectST" resultMap="myMap">-->
+<!--        select * from student-->
+<!--    </select>-->
+
+    <resultMap type="Student" id="stuMap1">
+    <id column="sid" property="sid"/>
+    <result column="sname" property="sname"/>
+    <result column="age" property="age"/>
+    <result column="tid" property="tid"/>
+    <association property="teacher" javaType="Teacher" >
+    <id column="id" property="id"/>
+    <result column="tname" property="tname"/>
+    </association>
+    </resultMap>
+    <select id="selectST" resultMap="stuMap1">
+select s.sid sid,s.sname sname,age age,t.id
+id,t.tname tname FROM student s left outer join teacher
+t on s.tid=t.id
+</select>
+</mapper>
+

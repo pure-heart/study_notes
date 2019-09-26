@@ -3,9 +3,17 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--设置日志-->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
+    <!--别名-->
+    <typeAliases>
+        <!--类的别名，可直接使用-->
+        <!--<typeAlias type="com.jhly.myBatisDemo.model.User" alias="user"></typeAlias>-->
+        <!--还可以给某个包下所有类取别名，别名为类名-->
+        <package name="com.jhly.myBatisDemo.model"/>
+    </typeAliases>
     <!-- default引用使用的environment-->
     <environments default="default">
         <!--声明可以使用的环境-->
@@ -14,13 +22,15 @@
             <transactionManager type="JDBC"></transactionManager>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/bilibili?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai"/>
+                <property name="url"
+                          value="jdbc:mysql://localhost:3306/bilibili?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai"/>
                 <property name="username" value="jhly"/>
                 <property name="password" value="123456"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="com/jhly/myBatisDemo/mapper/UserMapper.xml"/>
+        <package name="com.jhly.myBatisDemo.mapper"/>
     </mappers>
 </configuration>
