@@ -50,4 +50,28 @@ public class TestStudent {
         }
         sqlSession.close();
     }
+    @Test
+    public void selectAuto() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis.xml");
+        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sessionFactory.openSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> students = studentMapper.selectAuto();
+        for (Student student:students) {
+            System.out.println(student);
+        }
+        sqlSession.close();
+    }
+    @Test
+    public void selectUnion() throws IOException {
+        InputStream is = Resources.getResourceAsStream("mybatis.xml");
+        SqlSessionFactory sessionFactory = new SqlSessionFactoryBuilder().build(is);
+        SqlSession sqlSession = sessionFactory.openSession();
+        StudentMapper studentMapper = sqlSession.getMapper(StudentMapper.class);
+        List<Student> students = studentMapper.selectUnion();
+        for (Student student:students) {
+            System.out.println(student);
+        }
+        sqlSession.close();
+    }
 }

@@ -30,7 +30,10 @@
         </environment>
     </environments>
     <mappers>
+        <!-- 加载xml文件使用<mapper resource>的方式 -->
         <mapper resource="com/jhly/myBatisDemo/mapper/UserMapper.xml"/>
+        <!-- 注解方式配置用<mapper class>的方式 -->
+        <!--        <mapper class="com.jhly.myBatisDemo.mapper.TeacherMapper"/>-->
         <package name="com.jhly.myBatisDemo.mapper"/>
     </mappers>
 </configuration>

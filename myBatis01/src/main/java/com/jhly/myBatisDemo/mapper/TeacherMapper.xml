@@ -3,8 +3,36 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jhly.myBatisDemo.mapper.TeacherMapper">
-<select id="selectById" parameterType="int" resultType="teacher">
+    <select id="selectById" parameterType="int" resultType="teacher">
     select * from teacher where id = #{id}
 </select>
+    <resultMap id="myMap" type="teacher">
+        <id column="id" property="id"/>
+        <result column="tname" property="tname"/>
+        <!--        关联集合-->
+        <collection property="list" ofType="student" select="com.jhly.myBatisDemo.mapper.StudentMapper.selectByTid"
+                    column="id"/>
+    </resultMap>
+    <select id="selectAll" resultMap="myMap">
+        select * from teacher
+    </select>
+    <resultMap id="mymap1" type="teacher">
+        <id column="id" property="id"/>
+        <result column="tname" property="tname"/>
+        <collection property="list" ofType="student">
+            <id column="sid" property="sid"/>
+            <result column="age" property="age"/>
+            <result column="sname" property="sname"/>
+            <result column="tid" property="tid"/>
+        </collection>
+    </resultMap>
+    <select id="selectTS" resultMap="mymap1">
+        select * from teacher t left join student s on s.tid = t.id
+    </select>
+    <select id="selectAuto" resultType="teacher">
+        select t.*,s.sid 'list.sid',s.sname 'list.sname',s.age 'list.age',s.tid 'list.tid'
+        from student s right join teacher t
+        on s.tid = t.id
+    </select>
 </mapper>
 

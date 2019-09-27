@@ -1,6 +1,10 @@
 package com.jhly.myBatisDemo.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * @Auther:JHLY
@@ -9,7 +13,10 @@ import lombok.Data;
  * @Version:1.0
  */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Teacher {
     private Integer id;
-    private  String tname;
+    private String tname;
+    private List<Student> list;
 }
