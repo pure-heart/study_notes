@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/aop
+                            http://www.springframework.org/schema/aop/spring-aop.xsd">
     <!--创建bean的三种方法-->
     <!--        1.通过构造函数创建-->
     <!--          1.1.默认为无参构造函数-->
@@ -50,4 +54,44 @@
         <property name="phone" ref="phone"></property>
     </bean>
     <bean id="phone" class="com.jhly.springDemo.model.Phone"></bean>
+    <!-- =================================================================================================== -->
+    <!-- 通过schema-based的方式实现aop 每个通知都需要实现接口或类（MyBeforeAdvice、MyAfterAdvice）
+                前置通知实现MethodBeforeAdvice接口
+                后置通知实现AfterReturningAdvice接口
+                异常通知实现ThrowsAdvice接口
+                环绕通知实现MethodInterceptor接口
+            在<aop:config>中配置 -->
+    <!-- 配置通知类对象，在切面中引入 -->
+    <bean id="myBefore" class="com.jhly.springDemo.advice.MyBeforeAdvice"></bean>
+    <bean id="myAfter" class="com.jhly.springDemo.advice.MyAfterAdvice"></bean>
+    <bean id="myThrow" class="com.jhly.springDemo.advice.MyThrowAdvice"></bean>
+    <bean id="myArround" class="com.jhly.springDemo.advice.MyArrountAdvice"></bean>
+
+    <bean id="aopDemo" class="com.jhly.springDemo.model.AOPDemo"></bean>
+    <!-- 配置切面 -->
+<!--    <aop:config>-->
+<!--        &lt;!&ndash; 配置切点 &ndash;&gt;-->
+<!--        <aop:pointcut id="myPoint" expression="execution(* com.jhly.springDemo.model.AOPDemo.demo5(..))"/>-->
+<!--        &lt;!&ndash; 通配符的使用 &ndash;&gt;-->
+<!--        &lt;!&ndash; <aop:pointcut id="myPoint" expression="execution(* com.jhly.*.model.*.*(..))"/>&ndash;&gt;-->
+<!--        &lt;!&ndash; 通知 &ndash;&gt;-->
+<!--        <aop:advisor advice-ref="myBefore" pointcut-ref="myPoint"></aop:advisor>-->
+<!--        <aop:advisor advice-ref="myAfter" pointcut-ref="myPoint"></aop:advisor>-->
+<!--        <aop:advisor advice-ref="myThrow" pointcut-ref="myPoint"></aop:advisor>-->
+<!--        <aop:advisor advice-ref="myArround" pointcut-ref="myPoint"></aop:advisor>-->
+<!--    </aop:config>-->
+    <!-- =================================================================================================== -->
+    <!-- 通过aspectj的方式实现aop 通知不需要实现接口或类 -->
+    <bean id="myAdvice" class="com.jhly.springDemo.advice.MyAdvice"></bean>
+     <!-- 在<aop:config>的子标签<aop:aspect>中配置-->
+    <aop:config>
+        <aop:aspect ref="myAdvice">
+            <aop:pointcut id="myPointaj" expression="execution(* com.jhly.springDemo.model.AOPDemo.demo5(String,int)) and args(name,age)"/>
+            <aop:before method="myBefore" pointcut-ref="myPointaj" arg-names="name,age"></aop:before>
+<!--            <aop:after-returning method="myAftering" pointcut-ref="myPointaj"></aop:after-returning>-->
+<!--            <aop:after method="myAfter" pointcut-ref="myPointaj"></aop:after>-->
+<!--            <aop:after-throwing method="myThrow" pointcut-ref="myPointaj"></aop:after-throwing>-->
+<!--            <aop:around method="myArround" pointcut-ref="myPointaj"></aop:around>-->
+        </aop:aspect>
+    </aop:config>
 </beans>
