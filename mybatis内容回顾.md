@@ -1,4 +1,4 @@
-mybatis内容回顾
+## mybatis内容回顾 ##
 
 1.配置mybatis.xml全局配置文件
 

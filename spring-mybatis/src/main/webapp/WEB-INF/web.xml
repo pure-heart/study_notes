@@ -1,0 +1,15 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<web-app>
+<!--  上下文参数-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+<!--  spring配置文件-->
+    <param-value>classpath:applicationContext.xml</param-value>
+  </context-param>
+<!--  封装一个监听器加载spring配置文件-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+</web-app>

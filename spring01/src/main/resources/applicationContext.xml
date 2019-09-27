@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--创建bean的三种方法-->
+    <!--        1.通过构造函数创建-->
+    <!--          1.1.默认为无参构造函数-->
+    <!--          1.2.使用有参构造函数需要明确配置《<constructor-arg>中的 name index type属性）-->
+    <!--通过<bean>创建对象，默认配置文件加载时就创建 id表示获取对象的标识 class表示创建哪个类的对象-->
+    <bean id="people" class="com.jhly.springDemo.model.People">
+        <constructor-arg name="id" value="1"></constructor-arg>
+        <constructor-arg name="name" value="呆毛"></constructor-arg>
+    </bean>
+    <!--        2.实例工厂 先创建工厂再创建对象-->
+    <bean id="factory" class="com.jhly.springDemo.model.PeopleFactory"></bean>
+    <bean id="people1" factory-bean="factory" factory-method="newInstance"></bean>
+    <!--        2.静态工厂 不需要创建工厂-->
+    <bean id="people2" class="com.jhly.springDemo.model.PeopleFactory" factory-method="newInstance1"></bean>
+    <!--    给bean的属性赋值-->
+    <!--        1.构造方法注入-->
+    <!--        2.set方法注入-->
+    <!--        3.注解注入-->
+    <bean id="people3" class="com.jhly.springDemo.model.People">
+        <property name="id" value="2"></property>
+        <property name="name" value="梅林"></property>
+        <property name="sets">
+            <set>
+                <value>1</value>
+                <value>2</value>
+                <value>3</value>
+            </set>
+        </property>
+        <property name="list">
+            <list>
+                <value>1</value>
+                <value>2</value>
+            </list>
+        </property>
+        <property name="strs">
+            <array>
+                <value>1</value>
+            </array>
+        </property>
+        <property name="maps">
+            <map>
+                <entry key="a" value="a1"></entry>
+                <entry key="b" value="b1"></entry>
+            </map>
+        </property>
+        <property name="phone" ref="phone"></property>
+    </bean>
+    <bean id="phone" class="com.jhly.springDemo.model.Phone"></bean>
+</beans>

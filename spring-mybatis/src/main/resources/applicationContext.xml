@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 数据源封装类 -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url"
+                  value="jdbc:mysql://localhost:3306/bilibili?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=Asia/Shanghai"></property>
+        <property name="username" value="jhly"></property>
+        <property name="password" value="123456"></property>
+    </bean>
+    <!-- 创建sqlSessionFactory对象 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <!-- 扫描器，相当于mybatis.xml中<mapper>下的<package>标签 扫描后会给包内接口创建对象 -->
+    <bean id="configurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 指定要扫描的包 -->
+        <property name="basePackage" value="com/jhly/sm/mapper"></property>
+        <!-- 注入sqlSessionFactory -->
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+    </bean>
+    <!-- 由spring管理的类 -->
+    <bean id="user" class="com.jhly.sm.model.User"></bean>
+    <bean id="userService" class="com.jhly.sm.service.impl.UserServiceImpl">
+        <property name="userMapper" ref="userMapper"></property>
+    </bean>
+</beans>
