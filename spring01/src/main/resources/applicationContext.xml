@@ -6,6 +6,12 @@
                             http://www.springframework.org/schema/beans/spring-beans.xsd
                            http://www.springframework.org/schema/aop
                             http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+
+
+    <!-- =================================================================================================== -->
+
+
     <!--创建bean的三种方法-->
     <!--        1.通过构造函数创建-->
     <!--          1.1.默认为无参构造函数-->
@@ -18,8 +24,13 @@
     <!--        2.实例工厂 先创建工厂再创建对象-->
     <bean id="factory" class="com.jhly.springDemo.model.PeopleFactory"></bean>
     <bean id="people1" factory-bean="factory" factory-method="newInstance"></bean>
-    <!--        2.静态工厂 不需要创建工厂-->
+    <!--        3.静态工厂 不需要创建工厂-->
     <bean id="people2" class="com.jhly.springDemo.model.PeopleFactory" factory-method="newInstance1"></bean>
+
+
+    <!-- =================================================================================================== -->
+
+
     <!--    给bean的属性赋值-->
     <!--        1.构造方法注入-->
     <!--        2.set方法注入-->
@@ -31,7 +42,6 @@
             <set>
                 <value>1</value>
                 <value>2</value>
-                <value>3</value>
             </set>
         </property>
         <property name="list">
@@ -43,6 +53,7 @@
         <property name="strs">
             <array>
                 <value>1</value>
+                <value>2</value>
             </array>
         </property>
         <property name="maps">
@@ -54,7 +65,20 @@
         <property name="phone" ref="phone"></property>
     </bean>
     <bean id="phone" class="com.jhly.springDemo.model.Phone"></bean>
+
+
+    <!-- 自动注入 -->
+    <!-- autowire:byName:通过bean id 匹配
+                  byType:通过class类型匹配（不适用多个同类型）
+                  constructor:构造器的参数名称和bean id 一致
+                  default:默认不自动注入，如果配置了全局default-autowire="byName" 则以全局为准
+                  no:不注入-->
+    <bean id="people4" class="com.jhly.springDemo.model.People" autowire="constructor"></bean>
+
+
     <!-- =================================================================================================== -->
+
+
     <!-- 通过schema-based的方式实现aop 每个通知都需要实现接口或类（MyBeforeAdvice、MyAfterAdvice）
                 前置通知实现MethodBeforeAdvice接口
                 后置通知实现AfterReturningAdvice接口
@@ -80,7 +104,11 @@
 <!--        <aop:advisor advice-ref="myThrow" pointcut-ref="myPoint"></aop:advisor>-->
 <!--        <aop:advisor advice-ref="myArround" pointcut-ref="myPoint"></aop:advisor>-->
 <!--    </aop:config>-->
+
+
     <!-- =================================================================================================== -->
+
+
     <!-- 通过aspectj的方式实现aop 通知不需要实现接口或类 -->
     <bean id="myAdvice" class="com.jhly.springDemo.advice.MyAdvice"></bean>
      <!-- 在<aop:config>的子标签<aop:aspect>中配置-->

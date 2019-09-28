@@ -12,15 +12,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * @Version:1.0
  */
 public class Test {
+    /**
+     * 构造方法创建
+     */
     @org.junit.Test
 public void test01(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
-        People people = applicationContext.getBean("people3", People.class);
+        People people = applicationContext.getBean("people", People.class);
         System.out.println(people);
     }
 
     /**
-     * 测试实例工厂模式
+     * 测试实例工厂模式创建
      */
     @org.junit.Test
     public void test02(){
@@ -32,13 +35,33 @@ public void test01(){
     }
 
     /**
-     * 测试静态工厂模式
+     * 测试静态工厂模式创建
      */
     @org.junit.Test
     public void test03(){
 //        People people = PeopleFactory.newInstance1();
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         People people = applicationContext.getBean("people2", People.class);
+        System.out.println(people);
+    }
+
+    /**
+     * 测试bean属性赋值
+     */
+    @org.junit.Test
+    public void test04(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        People people = applicationContext.getBean("people3", People.class);
+        System.out.println(people);
+    }
+
+    /**
+     * 自动注入
+     */
+    @org.junit.Test
+    public void test05(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        People people = applicationContext.getBean("people4", People.class);
         System.out.println(people);
     }
 }

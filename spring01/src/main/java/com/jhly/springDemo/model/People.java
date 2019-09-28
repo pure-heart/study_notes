@@ -33,8 +33,8 @@ public class People {
         System.out.println("通过有参构造方法");
     }
 
-    public People(String name) {
-        this.name = name;
+    public People(Phone phone) {
+        this.phone = phone;
         System.out.println("通过有参构造方法1");
     }
 }
