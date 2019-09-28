@@ -15,11 +15,25 @@ import java.util.Arrays;
  */
 @ComponentScan
 public class TestSpring {
+    /**
+     * 测试aop通知
+     */
     @Test
     public void test01() {
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
         AopDemo aopDemo = applicationContext.getBean("aopDemo", AopDemo.class);
         aopDemo.demo1();
+    }
+
+    /**
+     * 测试读取配置文件
+     */
+    @Test
+    public void test02() {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        System.out.println(Arrays.toString(applicationContext.getBeanDefinitionNames()));
+        AopDemo aopDemo = applicationContext.getBean("aopDemo", AopDemo.class);
+        aopDemo.demo2();
     }
 }

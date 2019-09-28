@@ -56,12 +56,22 @@ public void test01(){
     }
 
     /**
-     * 自动注入
+     * 测试自动注入
      */
     @org.junit.Test
     public void test05(){
         ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
         People people = applicationContext.getBean("people4", People.class);
         System.out.println(people);
+    }
+    /**
+     * 测试scope范围
+     */
+    @org.junit.Test
+    public void test06(){
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("applicationContext.xml");
+        People people1 = applicationContext.getBean("people5", People.class);
+        People people2 = applicationContext.getBean("people5", People.class);
+        System.out.println(people1==people2);
     }
 }

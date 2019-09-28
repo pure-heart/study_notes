@@ -1,6 +1,7 @@
 package com.jhly.springDemo.model;
 
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class AopDemo {
+    @Value("${jdbc.url}")
+    private String db;
 
     @Pointcut("execution(* com.jhly.springDemo.model.AopDemo.demo1())")
     public void demo1() {
@@ -19,7 +22,7 @@ public class AopDemo {
     }
 
     public void demo2() {
-        System.out.println("demo2");
+        System.out.println(db);
     }
 
     public void demo3() {
