@@ -3,6 +3,7 @@ package com.jhly.springmvcDemo.controller;
 import com.jhly.springmvcDemo.model.People;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -95,5 +96,18 @@ public class PeopleController {
         people.setAge(13);
         people.setName("阿尔托莉雅");
         return people;
+    }
+
+    /**
+     * 作用域传值的方式
+     * 原生Servlet、Model、Map、ModelAndView
+     * @return
+     */
+    @RequestMapping("demo9")
+    public String test09(Model model){
+        people.setAge(13);
+        people.setName("阿尔托莉雅");
+        model.addAttribute("people",people);
+        return "main";
     }
 }
