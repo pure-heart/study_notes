@@ -1,6 +1,7 @@
 package com.jhly.javacore;
 
 /**
+ * 单例模式饿汉式
  * @Auther:JHLY
  * @Date:2019/9/28
  * @Description:com.jhly.javacore
