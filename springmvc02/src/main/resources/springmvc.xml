@@ -20,4 +20,16 @@ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/
         <property name="prefix" value="/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <!-- 拦截所有控制器 -->
+        <!-- 拦截器栈：多个拦截器同时作用 执行顺序和配置顺序有关 顺序：先进后出 -->
+        <bean class="com.jhly.springmvcDemo.interceptor.PhoneInterceptor"/>
+        <bean class="com.jhly.springmvcDemo.interceptor.DemoInterceptor"></bean>
+        <!-- 拦截具体控制器 -->
+        <!--        <mvc:interceptor>-->
+        <!--            <mvc:mapping path="/demo9"/>-->
+        <!--            <bean class="com.jhly.springmvcDemo.interceptor.PhoneInterceptor"></bean>-->
+        <!--        </mvc:interceptor>-->
+    </mvc:interceptors>
 </beans>

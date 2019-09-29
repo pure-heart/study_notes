@@ -2,6 +2,7 @@
 <html>
 <body>
 <h2>Hello World!</h2>
+<% System.out.println("index.jsp");%>
 <form action="demo4" method="post">
     <input name="name" type="text"/>
     <input name="age" type="text"/>

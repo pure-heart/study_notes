@@ -15,6 +15,7 @@
 <%--    <% String username = (String) request.getAttribute("username");--%>
 <%--        response.getWriter().write(username);--%>
 <%--    %>--%>
+    <% System.out.println("main.jsp");%>
     执行成功</h3>
 </body>
 </html>

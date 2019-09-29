@@ -108,6 +108,8 @@ public class PeopleController {
         people.setAge(13);
         people.setName("阿尔托莉雅");
         model.addAttribute("people",people);
+//        int i = 5/0;
+        System.out.println("controller demo9");
         return "main";
     }
 }
