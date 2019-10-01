@@ -13,6 +13,6 @@ import java.util.List;
  */
 
 public interface StudentMapper {
-    @Select("select * from student")
+    @Select("select s.*,t.id 'teacher.id',t.tname 'teacher.tname' from student s left join teacher t on s.tid =t.id")
     List<Student> selectAll();
 }
