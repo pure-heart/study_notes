@@ -1,23 +1,19 @@
-package com.jhly.javacore;
+package singleton;
 
 /**
- * 单例设计模式懒汉式
  * @Auther:JHLY
- * @Date:2019/9/28
- * @Description:com.jhly.javacore
+ * @Date:2019/10/5
+ * @Description:singleton
  * @Version:1.0
  */
-public class LazySingleton {
+public class SingletonLazy {
     /*
        静态方法调用的对象也必须是静态的
        静态方法必须设置访问修饰符为private，防止其他类调用
      */
-    private static LazySingleton lazySingleton;
-
+    private static SingletonLazy singleton;
     //构造函数私有化
-    private LazySingleton() {
-    }
-
+    private SingletonLazy(){};
     /**
      * 提供对外的访问接口
      * 无法直接创建对象所以设置方法为静态方法，否则无法调用
@@ -25,16 +21,16 @@ public class LazySingleton {
      *
      * @return
      */
-    public static LazySingleton getInstance() {
+    public static SingletonLazy getInstance(){
         //如果实例化过，直接返回
-        if (lazySingleton == null) {
-            synchronized (LazySingleton.class) {
+        if(singleton == null){
+            synchronized (SingletonLazy.class) {
                 //双重验证
-                if (lazySingleton == null) {
-                    lazySingleton = new LazySingleton();
+                if(singleton == null) {
+                    singleton = new SingletonLazy();
                 }
             }
         }
-        return lazySingleton;
+        return singleton;
     }
 }
