@@ -22,7 +22,5 @@ public class DynamicProxyTest {
         BuyHouse proxyInstance = (BuyHouse)Proxy.newProxyInstance(BuyHouse.class.getClassLoader(),
                 new Class[]{BuyHouse.class}, new DynamicProxyHandler(buyHouse));
         proxyInstance.buyHouse();
-
-        String s;
     }
 }
