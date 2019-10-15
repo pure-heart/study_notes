@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<service name="Testservice">  <!-- 指定服务名,随便定义 -->
+
+    <description>测试axis2webservices</description><!-- 服务的作用说明，可写可不写 -->
+
+    <!-- 指定要发布的类路径 -->
+    <parameter name="NumService">  <!-- 自定义    name-->
+        service.NumService      <!-- 写的类路径 -->
+    </parameter>
+    <!-- 类里面的方法，有其他方法就在写个operation标签 -->
+    <operation name="addTwo">  <!-- 类里面的方法名 -->
+        <messageReceiver class="org.apache.axis2.rpc.receivers.RPCMessageReceiver" />
+    </operation>
+
+</service>
+        <!-- http://localhost:8080/testaxis2webservice/services/Testservice?wsdl -->
