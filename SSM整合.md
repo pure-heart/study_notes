@@ -1,23 +1,23 @@
-# Jhly #
+# # SSM内容回顾 #
 Jhly的个人学习记录
 
 <hr>
 
 #### mybatis内容回顾 ####
 
-1.<a>配置mybatis.xml全局配置文件</a>
+1. 配置mybatis.xml全局配置文件
 
-2.<a>配置mapper.xml</a>
+2. 配置mapper.xml
 
-3.<a>XXXMapper接口绑定</a>
+3. XXXMapper接口绑定
 
-4.<a>动态SQL</a>
+4. 动态SQL
 
-5.<a>多表联合查询</a>
+5. 多表联合查询
 
-6.<a>注解</a>
+6. 注解
 
-7.<a>mybatis运行原理</a>
+7. mybatis运行原理
 
 <hr>
 
@@ -25,29 +25,29 @@ Jhly的个人学习记录
 
 #### spring内容回顾 ####
 
-1.配置applicationContext.xml配置文件
+1. 配置applicationContext.xml配置文件
 
-2.ioc
+2. ioc
 
-3.创建bean的三种方式
+3. 创建bean的三种方式
 
-4.属性注入
+4. 属性注入
 
-5.bean范围
+5. bean范围
 
-6.DI
+6. DI
 
-7.AOP的实现方式
+7. AOP的实现方式
 
-8.通知
+8. 通知
 
-9.通过注解实现AOP
+9. 通过注解实现AOP
 
-10.声明式事务
+10. 声明式事务
 
-11.spring加载配置文件
+11. spring加载配置文件
 
-12.常用注解
+12. 常用注解
 
 <hr>
 
@@ -55,19 +55,19 @@ Jhly的个人学习记录
 
 #### springmvc内容回顾 ####
 
-1.基本配置
+1. 基本配置
 
-2.参数接收
+2. 参数接收
 
-3.跳转方式和自定义视图解析器
+3. 跳转方式和自定义视图解析器
 
-4.@ResponseBody
+4. @ResponseBody
 
-5.传值方式
+5. 传值方式
 
-6.自定义拦截器和拦截器栈
+6. 自定义拦截器和拦截器栈
 
-7.springmvc运行原里
+7. springmvc运行原里
 
 <hr>
 
@@ -75,7 +75,7 @@ Jhly的个人学习记录
 
 
 
-1.maven依赖
+1. maven依赖
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -159,7 +159,7 @@ Jhly的个人学习记录
 
 ```
 
-2.web.xml
+2. web.xml
 
 ```
 <!DOCTYPE web-app PUBLIC
@@ -207,7 +207,7 @@ Jhly的个人学习记录
 
 ```
 
-3.applicationContext.xml
+3. applicationContext.xml
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -262,7 +262,7 @@ http://www.springframework.org/schema/tx http://www.springframework.org/schema/t
 </beans>
 ```
 
-4.数据源属性文件
+4. 数据源属性文件
 
 ```
 jdbc.driver = com.mysql.cj.jdbc.Driver
@@ -271,7 +271,7 @@ jdbc.username = jhly
 jdbc.password = 123456
 ```
 
-5.log4j日志
+5. log4j日志
 
 ```
 #========================== 自定义输出格式说明================================
@@ -314,7 +314,7 @@ log4j.appender.stdout.layout.ConversionPattern = [%-5p] %d{yyyy-MM-dd HH:mm:ss} 
 #log4j.appender.E.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
 ```
 
-6.springmvc.xml
+6. springmvc.xml
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
