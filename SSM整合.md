@@ -1,7 +1,7 @@
-# # SSM内容回顾 #
-Jhly的个人学习记录
+##  SSM内容回顾
 
 <hr>
+
 
 #### mybatis内容回顾 ####
 
@@ -19,7 +19,6 @@ Jhly的个人学习记录
 
 7. mybatis运行原理
 
-<hr>
 
 
 
@@ -49,7 +48,6 @@ Jhly的个人学习记录
 
 12. 常用注解
 
-<hr>
 
 
 
@@ -69,7 +67,8 @@ Jhly的个人学习记录
 
 7. springmvc运行原里
 
-<hr>
+
+
 
 #### spring-springmvc-mybatis整合 ####
 
