@@ -30,7 +30,7 @@ public class TCPServer {
         //7,获取Socket的输入流
         InputStream in = clientSocket.getInputStream();
         //8,创建目的地的字节输出流
-        BufferedOutputStream fileOut = new BufferedOutputStream(new FileOutputStream("D:\\NoDir\\test.jpg"));
+        BufferedOutputStream fileOut = new BufferedOutputStream(new FileOutputStream("D:\\test.jpg"));
         //9,把Socket输入流中的数据，写入目的地的字节输出流中
         byte[] buffer = new byte[1024];
         int len = -1;
