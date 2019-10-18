@@ -10,6 +10,7 @@ import com.jhly.excel_operation.utils.ExcelUtil.ExcelUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -32,7 +33,7 @@ public class UserServiceImp implements UserService {
     }
 
     @Override
-    public void exportExcel(List<User> users) {
+    public void exportExcel(List<User> users,HttpServletResponse response) {
         String fileName = "用户信息.xlsx";
         //EasyExcel.write(fileName,User.class).sheet("sheet1").doWrite(users);
         //ExcelWriter excelWriter = EasyExcel.write(fileName,User.class).build();
@@ -47,13 +48,23 @@ public class UserServiceImp implements UserService {
         map.put("age","年龄");
         map.put("remark","备注");
         map.put("createDate","创建时间");
+//        try {
+//            File file=new File(fileName);
+//            OutputStream out =new FileOutputStream(file);
+//            ExcelUtil.exportExcel(map,users,out);
+//            out.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
         try {
-            File file=new File(fileName);
-            OutputStream out =new FileOutputStream(file);
+            response.setContentType("application/vnd.ms-excel");
+            response.addHeader("Content-Disposition","attachment"+java.net.URLEncoder.encode("用户信息","utf-8"));
+            OutputStream out = response.getOutputStream();
             ExcelUtil.exportExcel(map,users,out);
-            out.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+//            out.close();
     }
 }

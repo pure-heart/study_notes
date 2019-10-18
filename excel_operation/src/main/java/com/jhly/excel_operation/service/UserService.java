@@ -2,6 +2,7 @@ package com.jhly.excel_operation.service;
 
 import com.jhly.excel_operation.entity.User;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -14,5 +15,5 @@ import java.util.List;
  */
 public interface UserService {
     List<User> getAll();
-    void exportExcel(List<User> users);
+    void exportExcel(List<User> users, HttpServletResponse response);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping("/exportExcel")
-    public void exportExcel(){
-        userService.exportExcel(userService.getAll());
+    public void exportExcel(HttpServletResponse response){
+        userService.exportExcel(userService.getAll(),response);
     }
 }
